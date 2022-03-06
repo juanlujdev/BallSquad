@@ -1,0 +1,27 @@
+{
+  "applications": "*",
+  "changelogDate": "20220223143812",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "photo_url",
+  "fields": [
+    {
+      "fieldName": "url",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "PhotoUrl",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "pet",
+      "otherEntityRelationshipName": "photoUrls",
+      "relationshipName": "pet",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

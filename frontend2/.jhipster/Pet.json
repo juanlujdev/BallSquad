@@ -1,0 +1,57 @@
+{
+  "applications": "*",
+  "changelogDate": "20220223143811",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "pet",
+  "fields": [
+    {
+      "fieldName": "petId",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "petStatus",
+      "fieldType": "PetStatus",
+      "fieldValues": "AVAILABLE,PENDING,SOLD"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Pet",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "storeOrder",
+      "otherEntityRelationshipName": "petId",
+      "relationshipName": "storeOrder",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "category",
+      "otherEntityRelationshipName": "pet",
+      "relationshipName": "category",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "tag",
+      "otherEntityRelationshipName": "pet",
+      "relationshipName": "tags",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "photoUrl",
+      "otherEntityRelationshipName": "pet",
+      "relationshipName": "photoUrls",
+      "relationshipType": "one-to-many",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "no",
+  "skipServer": true
+}

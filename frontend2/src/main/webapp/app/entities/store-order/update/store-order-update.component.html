@@ -1,0 +1,84 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-store-order-heading" data-cy="StoreOrderCreateUpdateHeading">Create or edit a Store Order</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_orderId">Order Id</label>
+          <input type="number" class="form-control" name="orderId" id="field_orderId" data-cy="orderId" formControlName="orderId" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_quantity">Quantity</label>
+          <input type="number" class="form-control" name="quantity" id="field_quantity" data-cy="quantity" formControlName="quantity" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_shipDate">Ship Date</label>
+          <div class="d-flex">
+            <input
+              id="field_shipDate"
+              data-cy="shipDate"
+              type="datetime-local"
+              class="form-control"
+              name="shipDate"
+              formControlName="shipDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_status">Status</label>
+          <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let orderStatus of orderStatusValues" [value]="orderStatus">orderStatus</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_complete">Complete</label>
+          <input type="checkbox" class="form-check" name="complete" id="field_complete" data-cy="complete" formControlName="complete" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_petId">Pet Id</label>
+          <select class="form-control" id="field_petId" data-cy="petId" name="petId" formControlName="petId">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="petOption.id === editForm.get('petId')!.value?.id ? editForm.get('petId')!.value : petOption"
+              *ngFor="let petOption of petsSharedCollection; trackBy: trackPetById"
+            >
+            <!-- J.Lujan 05/03/22 -->
+              <!-- {{ petOption.petId }} -->
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="pet">
+      <h2 data-cy="petDetailsHeading"><span>Pet</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ pet.id }}</span>
+        </dd>
+        <dt><span>Pet Id</span></dt>
+        <dd>
+          <!-- <span>{{ pet.petId }}</span> -->
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+          <span>{{ pet.name }}</span>
+        </dd>
+        <dt><span>Pet Status</span></dt>
+        <dd>
+          <!-- J.Lujan 05/03/22 -->
+          <span>{{ pet.status }}</span>
+        </dd>
+        <dt><span>Category</span></dt>
+        <dd>
+          <div *ngIf="pet.category">
+            <a [routerLink]="['/category', pet.category?.id, 'view']">{{ pet.category?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/pet', pet.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

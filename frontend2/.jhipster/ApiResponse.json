@@ -1,0 +1,29 @@
+{
+  "applications": "*",
+  "changelogDate": "20220223143813",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "api_response",
+  "fields": [
+    {
+      "fieldName": "code",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "message",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "ApiResponse",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no",
+  "skipServer": true
+}

@@ -1,0 +1,87 @@
+entity StoreOrder {
+	orderId Integer,
+    quantity Integer,
+    shipDate Instant,
+    status OrderStatus,
+    complete Boolean
+}
+entity Customer {
+	customerId Integer,
+}
+entity Address {
+	street String,
+    city String,
+    state String,
+    zip String
+}
+// an ignored comment
+/** not an ignored comment */
+entity Category {
+	categoryId Integer,
+    name String,
+}
+entity User {
+	userId Integer,
+    login String,
+    firstName String,
+    lastName String,
+    email String,
+    password String,
+    phone String,
+    userStatus Integer
+}
+entity Tag {
+	tagId Integer,
+    name String
+}
+entity Pet {
+	petId Integer,
+    name String required,
+    //category Category,
+    //photoUrls PhotoUrl required,
+    //tags Tag,
+    petStatus PetStatus
+}
+entity PhotoUrl {
+	url String
+}
+@skipServer
+entity ApiResponse {
+	code Integer,
+    type String,
+    message String,
+}
+enum PetStatus {
+	AVAILABLE, PENDING, SOLD
+}
+enum OrderStatus {
+	PLACED, APPROVED, DELIVERED
+}
+relationship OneToOne {
+	Customer{username(login)} to User
+}
+relationship OneToMany {
+	Pet to StoreOrder{petId(petId)}
+}
+relationship ManyToOne {
+	Tag to Pet{tags}
+}
+relationship ManyToOne {
+	PhotoUrl to Pet{photoUrls required}
+}
+relationship ManyToOne {
+	Address to Customer{address}
+}
+relationship OneToMany {
+	Category to Pet{category}
+}
+// defining multiple oneToOne relationships
+// Set pagination options
+//paginate P, Employee with infinite-scroll
+paginate Pet, StoreOrder with pagination
+skipServer * except PhotoUrl
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+// Set service options to all except few
+// Set an angular suffix
+// angularSuffix * with mySuffix
